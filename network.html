@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Khojiakbar Akhmedov. Software and web-application developer. Designer. xgm.suite@gmail.com.">
+    <title>@akhm7</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/cover/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="icon" href="favicon.ico">
+    <meta name="theme-color" content="#7952b3">
+    <script src="https://kit.fontawesome.com/12d47a617f.js" crossorigin="anonymous"></script>
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        /* Custom default button */
+        .btn-secondary,
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            color: #000;
+            text-shadow: none;
+            /* Prevent inheritance from `body` */
+        }
+
+        /*
+ * Base structure
+ */
+        body {
+            text-shadow: 0 .05rem .1rem rgba(50, 50, 50, .5);
+            background-color: #000;
+        }
+
+        .cover-container {
+            max-width: 42em;
+        }
+
+        /*
+ * Header
+ */
+        .nav-masthead .nav-link {
+            padding: .25rem 0;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .5);
+            background-color: transparent;
+            border-bottom: .25rem solid transparent;
+        }
+
+        .nav-masthead .nav-link:hover,
+        .nav-masthead .nav-link:focus {
+            border-bottom-color: rgba(255, 255, 255, .25);
+        }
+
+        .nav-masthead .nav-link+.nav-link {
+            margin-left: 1rem;
+        }
+
+        .nav-masthead .active {
+            color: #fff;
+            border-bottom-color: #fff;
+        }
+    </style>
+</head>
+
+<body class="d-flex h-100 text-white">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb-3">
+            <div>
+                <h3 id="pageTitle" class="float-md-start mb-0">@akhm7</h3>
+                <nav class="nav nav-masthead justify-content-center float-md-end">
+                    <a class="nav-link" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" href="#">Computer Network</a>
+                    <a id="goBackButton" style="display: none;" class="nav-link">Go Back</a>
+                </nav>
+            </div>
+        </header>
+        <main class="px-3">
+            <div class="fw-6" id="markdown-content">
+                <!-- Сюда будет загружено содержимое Markdown файла -->
+            </div>
+        </main>
+        <footer class="mt-auto text-white-50">
+            <p>© 2023 Khojiakbar Akhmedov</p>
+        </footer>
+    </div>
+    <style>
+        /* Hover styles for file links */
+        .list-group-item:hover {
+            background-color: #f8f9fa;
+            /* Change this to your desired hover background color */
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+    <script>
+        const markdownContent = document.getElementById('markdown-content');
+        const fileLinks = {
+            "Syllabus": "https://raw.githubusercontent.com/akhm7/akhm7.github.io/main/md/syllabus.md",
+            "Lecture": "https://raw.githubusercontent.com/akhm7/akhm7.github.io/main/md/lecture.md",
+            "Presentation Topics": "https://raw.githubusercontent.com/akhm7/akhm7.github.io/main/md/topics.md",
+            "List of Software": "https://raw.githubusercontent.com/akhm7/akhm7.github.io/main/md/program.md",
+            "Description of Projects": "https://raw.githubusercontent.com/akhm7/akhm7.github.io/main/md/projects.md",
+            "Grading System": "https://raw.githubusercontent.com/akhm7/akhm7.github.io/main/md/grade.md",
+            // Добавьте ссылки и названия файлов по вашему усмотрению
+        };
+        const md = window.markdownit();
+
+        // Функция для отображения списка файлов
+        function showFileList() {
+            document.getElementById('pageTitle').textContent = "@akhm7";
+            document.getElementById('goBackButton').style.display = 'none';
+
+            markdownContent.innerHTML = '<div class="list-group">'
+
+            for (const fileName in fileLinks) {
+                if (fileLinks.hasOwnProperty(fileName)) {
+                    markdownContent.innerHTML += '<a href="#" class="list-group-item list-group-item-action" ' +
+                        `onclick="loadMarkdownFile(this, '${fileLinks[fileName]}', '${fileName}')">${fileName}</a>`;
+                }
+            }
+
+            markdownContent.innerHTML += '</div>';
+        }
+
+        // Функция для загрузки и отображения Markdown файла
+        function loadMarkdownFile(element, fileURL, pageTitle) {
+            // Remove 'active' class from all file links
+            const fileLinks = document.querySelectorAll('.list-group-item');
+
+            fetch(fileURL)
+                .then(response => response.text())
+                .then(markdownText => {
+                    document.getElementById('pageTitle').textContent = pageTitle;
+                    document.getElementById('goBackButton').style.display = 'block';
+
+                    markdownContent.innerHTML = md.render(markdownText);
+                    const backButton = document.getElementById('goBackButton');
+                    backButton.addEventListener('click', showFileList);
+                })
+                .catch(error => {
+                    console.error('Ошибка загрузки файла:', error);
+                });
+        }
+
+        // Первоначально отобразим список файлов
+        showFileList();
+    </script>
+</body>
+
+</html>
