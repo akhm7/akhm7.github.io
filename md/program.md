@@ -1,4 +1,4 @@
-| Name                | Brief Description                                                        | Link (English)                        |
+| Name                | Brief Description                                                        | Link                       |
 |---------------------|--------------------------------------------------------------------------|--------------------------------------|
 | Cisco Packet Tracer | A network device simulator for learning and testing network configurations. Allows creating, configuring, and analyzing virtual networks. | [Link](https://www.netacad.com/courses/packet-tracer) |
 | PuTTY               | An SSH and Telnet client for remote access to servers and devices. Provides a command-line interface for managing remote systems. | [Link](https://www.putty.org/)       |
