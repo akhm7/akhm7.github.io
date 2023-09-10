@@ -1,5 +1,3 @@
-# Computer Networks
-
 ## Topics:
 1. Introduction to Computer Networks
    - Computer networks allow devices to exchange data and resources.
