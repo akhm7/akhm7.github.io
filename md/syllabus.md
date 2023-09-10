@@ -1,7 +1,9 @@
 ### 2023-2024 year (1 sem.)
 
 **Course Title:** Computer Network  
-**Opening Major:** Information Technology 
+
+**Opening Major:** Information Technology
+
 **Professor in charge:** Akhmedov Khojiakbar  
 **Contact:** +998 (90) 178-24-68  
 **E-Mail:** xgm.suite@gmail.com
