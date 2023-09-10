@@ -1,4 +1,3 @@
-## Topics:
 1. Introduction to Computer Networks
    - Computer networks allow devices to exchange data and resources.
    - The role of networks in the modern world: information exchange, resource access, cloud services.
