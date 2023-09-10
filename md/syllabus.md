@@ -1,4 +1,4 @@
-### Syllabus 2023-2024 year (1 sem.)
+### 2023-2024 year (1 sem.)
 
 **Course Title:** Computer Network  
 **Opening Major:** Information Technology 
