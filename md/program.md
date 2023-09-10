@@ -6,3 +6,4 @@
 | AnyDesk             | A program for remote access and computer management. Offers high performance for remote work. | [Link](https://anydesk.com/)         |
 | Docker/VirtualBox   | Platforms for virtualization, creating, and managing containers and virtual machines. Ensure isolation and efficient resource utilization. | [Docker](https://www.docker.com/), [VirtualBox](https://www.virtualbox.org/) |
 | OpenVPN/SoftEther VPN | Programs for setting up virtual private networks (VPNs). Provide secure and encrypted connections between remote devices. | [OpenVPN](https://openvpn.net/), [SoftEther VPN](https://www.softether.org/) |
+
