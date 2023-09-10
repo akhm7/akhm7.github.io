@@ -15,3 +15,4 @@
 | 13     | Routing Protocol According to AS Area        | Understanding of Routing Protocol According to AS Area | Lecture / Practice       | Computer                |
 | 14     | Cisco / STP                                  | Cisco Switch Basic Commands                          | Lecture / Practice          | Computer                |
 | 15     | Final Exam                                  |                                                    |                             |                         |
+
