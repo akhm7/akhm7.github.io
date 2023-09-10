@@ -1,5 +1,3 @@
-### Grading System Brief
-
 **Grade Components:**
 
 - **Activity** (Max. 1 point per lesson)
