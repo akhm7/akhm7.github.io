@@ -197,31 +197,35 @@
         function downloadCSV() {
             var table = document.getElementById("salesTable");
             var rows = table.querySelectorAll("tr");
-
+        
             if (rows.length === 1) {
                 alert("The table is empty. Add data before downloading.");
                 return;
             }
-
-            var csvContent = "data:text/csv;charset=utf-8";
-
-            for (var i = 0; i < rows.length; i++) {
-                var cells = rows[i].querySelectorAll("td, th");
+        
+            var csvContent = "data:text/csv;charset=utf-8\n";
+            csvContent += ",Date,Product,Category,Units Sold,Price per Unit ($)\n";
+        
+            for (var i = 1; i < rows.length; i++) {
+                var cells = rows[i].querySelectorAll("td");
                 var row = [];
+        
                 for (var j = 0; j < cells.length; j++) {
                     row.push(cells[j].textContent);
                 }
-                csvContent += "\n" + row.join(",");
+        
+                csvContent += row.join(",") + "\n";
             }
-
+        
             var encodedUri = encodeURI(csvContent);
-
+        
             var link = document.createElement("a");
             link.setAttribute("href", encodedUri);
             link.setAttribute("download", "sales_data.csv");
-
+        
             link.click();
         }
+        
 
         function checkURL() {
             var urlParams = new URLSearchParams(window.location.search);
