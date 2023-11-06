@@ -1,9 +1,12 @@
-<!DOCTYPE html>
-<html>
+<html lang="ru">
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Khojiakbar Akhmedov. Software and web-application developer. Designer. xgm.suite@gmail.com.">
     <title>Sales Data Generator</title>
-    <!-- Включение стилей Bulma CSS -->
+    <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 
@@ -173,8 +176,6 @@
             var currentSequence = document.getElementById("seededRandomSequence").value;
             var currentURL = window.location.href.split('?')[0];
             var newURL = currentURL + "?seededRandomSequence=" + currentSequence;
-
-            // Создаем временный элемент для копирования текста
             var tempInput = document.createElement("input");
             tempInput.value = newURL;
             document.body.appendChild(tempInput);
@@ -190,7 +191,6 @@
             return (dd < 10 ? '0' : '') + dd + "." + (mm < 10 ? '0' : '') + mm + "." + yyyy;
         }
 
-        // Check for seededRandomSequence in URL
         function checkURL() {
             var urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has("seededRandomSequence")) {
@@ -200,7 +200,6 @@
             generateDataFromSequence();
         }
 
-        // Call checkURL on page load
         checkURL();
     </script>
 </body>
