@@ -13,7 +13,9 @@
 <body>
     <section class="section">
         <div class="container">
-            <a href="/excel.html"><h1 class="title">Sales Data Generator</h1></a>
+            <a href="/excel.html">
+                <h1 class="title">Sales Data Generator</h1>
+            </a>
             <div class="columns">
                 <div class="column is-one-third">
                     <div class="field">
@@ -39,6 +41,7 @@
                             <button class="button is-small is-danger" onclick="clearData()">Clear Data</button>
                             <button class="button is-small is-warning" onclick="copySequence()">Copy</button>
                             <button class="button is-small is-info" onclick="generateLink()">Link (copy)</button>
+                            <button class="button is-small is-primary" onclick="downloadCSV()">CSV</button>
                         </div>
                     </div>
                 </div>
@@ -189,6 +192,35 @@
             var mm = date.getMonth() + 1;
             var yyyy = date.getFullYear();
             return (dd < 10 ? '0' : '') + dd + "." + (mm < 10 ? '0' : '') + mm + "." + yyyy;
+        }
+
+        function downloadCSV() {
+            var table = document.getElementById("salesTable");
+            var rows = table.querySelectorAll("tr");
+
+            if (rows.length === 0) {
+                alert("The table is empty. Add data before downloading.");
+                return;
+            }
+
+            var csvContent = "data:text/csv;charset=utf-8";
+
+            for (var i = 0; i < rows.length; i++) {
+                var cells = rows[i].querySelectorAll("td, th");
+                var row = [];
+                for (var j = 0; j < cells.length; j++) {
+                    row.push(cells[j].textContent);
+                }
+                csvContent += "\n" + row.join(",");
+            }
+
+            var encodedUri = encodeURI(csvContent);
+
+            var link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "sales_data.csv");
+
+            link.click();
         }
 
         function checkURL() {
