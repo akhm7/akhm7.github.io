@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sales Data Generator</title>
+    <!-- Включение стилей Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Sales Data Generator</h1>
+            <div class="columns">
+                <div class="column is-one-third">
+                    <div class="field">
+                        <label class="label">Enter the number of rows to generate:</label>
+                        <div class="control">
+                            <input class="input is-small" type="number" id="rowCount" value="10">
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-one-third">
+                    <div class="field">
+                        <label class="label">Seeded Random Sequence:</label>
+                        <div class="control">
+                            <input class="input is-small" id="seededRandomSequence">
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-one-third">
+                    <div class="field">
+                        <label class="label">Actions:</label>
+                        <div class="control is-grouped">
+                            <button class="button is-small is-success" onclick="generateData()">Generate Data</button>
+                            <button class="button is-small is-danger" onclick="clearData()">Clear Data</button>
+                            <button class="button is-small is-warning" onclick="copySequence()">Copy</button>
+                            <button class="button is-small is-info" onclick="generateLink()">Link (copy)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table class="table is-bordered is-fullwidth" id="salesTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Units Sold</th>
+                        <th>Price per Unit ($)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        var generatedRandomSequence = "";
+
+        var productData = {
+            "Laptop": { category: "Electronics", price: 800 },
+            "Smartphone": { category: "Electronics", price: 400 },
+            "Tablet": { category: "Electronics", price: 250 },
+            "Television": { category: "Electronics", price: 600 },
+            "Refrigerator": { category: "Home Appliances", price: 700 },
+            "Washing Machine": { category: "Home Appliances", price: 550 },
+            "Dress": { category: "Clothing", price: 50 },
+            "Shirt": { category: "Clothing", price: 30 },
+            "Jeans": { category: "Clothing", price: 40 },
+            "Shoes": { category: "Clothing", price: 60 },
+            "Microwave Oven": { category: "Kitchen Appliances", price: 150 },
+            "Headphones": { category: "Electronics", price: 70 },
+            "Camera": { category: "Electronics", price: 300 },
+            "Printer": { category: "Electronics", price: 200 },
+            "Gaming Console": { category: "Electronics", price: 350 },
+            "Coffee Maker": { category: "Kitchen Appliances", price: 80 },
+            "Toaster": { category: "Kitchen Appliances", price: 25 },
+            "Blender": { category: "Kitchen Appliances", price: 70 },
+            "Vacuum Cleaner": { category: "Home Appliances", price: 120 },
+            "Iron": { category: "Home Appliances", price: 40 },
+            "Fitness Tracker": { category: "Fitness Equipment", price: 90 },
+            "Bicycle": { category: "Fitness Equipment", price: 300 },
+            "Treadmill": { category: "Fitness Equipment", price: 500 },
+            "Dumbbells": { category: "Fitness Equipment", price: 20 },
+            "Yoga Mat": { category: "Fitness Equipment", price: 15 }
+        };
+
+
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function generateData() {
+            var sequence = document.getElementById("seededRandomSequence").value.trim();
+            if (sequence === "") {
+                generateSalesData();
+            } else {
+                generateDataFromSequence();
+            }
+        }
+
+        function generateSalesData() {
+            var rowCount = parseInt(document.getElementById("rowCount").value);
+
+            var products = Object.keys(productData);
+
+            var table = document.getElementById("salesTable");
+            generatedRandomSequence = "";
+
+            table.innerHTML = "<tr><th>Date</th><th>Product</th><th>Category</th><th>Units Sold</th><th>Price per Unit ($)</th></tr>";
+
+            for (var i = 0; i < rowCount; i++) {
+                var productId = getRandomInt(0, products.length - 1);
+                var product = products[productId];
+                var sold = getRandomInt(1, 30);
+                var date = new Date(2023, 0, 1 + getRandomInt(0, 364));
+                var price = productData[product].price;
+                var category = productData[product].category;
+
+                generatedRandomSequence += `${productId}-${sold}-${date.getTime()}|`;
+
+                var formattedDate = formatDate(date);
+                table.innerHTML += "<tr><td>" + formattedDate + "</td><td>" + product + "</td><td>" + category + "</td><td>" + sold + "</td><td>" + price + "</td></tr>";
+            }
+
+            document.getElementById("seededRandomSequence").value = generatedRandomSequence;
+        }
+
+        function generateDataFromSequence() {
+            var sequence = document.getElementById("seededRandomSequence").value;
+            var rows = sequence.split("|");
+            var table = document.getElementById("salesTable");
+
+            table.innerHTML = "<tr><th>Date</th><th>Product</th><th>Category</th><th>Units Sold</th><th>Price per Unit ($)</th></tr>";
+
+            for (var i = 0; i < rows.length; i++) {
+                var row = rows[i];
+
+                if (row.trim() === "") {
+                    continue;
+                }
+
+                row = row.split("-");
+                var productId = parseInt(row[0]);
+                var product = Object.keys(productData)[productId];
+                var sold = parseInt(row[1]);
+                var date = new Date(parseInt(row[2]));
+                var price = productData[product].price;
+                var category = productData[product].category;
+
+                var formattedDate = formatDate(date);
+                table.innerHTML += "<tr><td>" + formattedDate + "</td><td>" + product + "</td><td>" + category + "</td><td>" + sold + "</td><td>" + price + "</td></tr>";
+            }
+        }
+
+        function clearData() {
+            document.getElementById("seededRandomSequence").value = "";
+            document.getElementById("salesTable").innerHTML = "<tr><th>Date</th><th>Product</th><th>Category</th><th>Units Sold</th><th>Price per Unit ($)</th></tr>";
+        }
+
+        function copySequence() {
+            var sequenceInput = document.getElementById("seededRandomSequence");
+            sequenceInput.select();
+            document.execCommand("copy");
+        }
+
+
+        function generateLink() {
+            var currentSequence = document.getElementById("seededRandomSequence").value;
+            var currentURL = window.location.href.split('?')[0];
+            var newURL = currentURL + "?seededRandomSequence=" + currentSequence;
+
+            // Создаем временный элемент для копирования текста
+            var tempInput = document.createElement("input");
+            tempInput.value = newURL;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+        }
+
+        function formatDate(date) {
+            var dd = date.getDate();
+            var mm = date.getMonth() + 1;
+            var yyyy = date.getFullYear();
+            return (dd < 10 ? '0' : '') + dd + "." + (mm < 10 ? '0' : '') + mm + "." + yyyy;
+        }
+
+        // Check for seededRandomSequence in URL
+        function checkURL() {
+            var urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has("seededRandomSequence")) {
+                var seededRandomSequence = urlParams.get("seededRandomSequence");
+                document.getElementById("seededRandomSequence").value = seededRandomSequence;
+            }
+            generateDataFromSequence();
+        }
+
+        // Call checkURL on page load
+        checkURL();
+    </script>
+</body>
+
+</html>
