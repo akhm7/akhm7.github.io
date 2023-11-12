@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CN03L01</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+<section class="section">
+  <div class="container">
+    <h4 class="title is-4">dchp, dns, web-server, static/dynamic addressing</h4>
+
+    <div class="content">
+      <h5 class="title is-5">1. Create Local Network</h5>
+      <p>Create a local network with the address 192.168.0.0/24, including:</p>
+      <ul>
+        <li><i class="fas fa-desktop"></i> 2 computers with static IPs (192.168.0.30, 192.168.0.31)</li>
+        <li><i class="fas fa-laptop"></i> 6 laptops with dynamic addressing</li>
+        <li><i class="fas fa-plug"></i> 1 switch for device connectivity</li>
+      </ul>
+
+      <h5 class="title is-5">2. Add DHCP Server</h5>
+      <p>Add a DHCP server with an IP range from 192.168.0.32 to 192.168.0.64 and a subnet mask of 255.255.255.0.</p>
+
+      <h5 class="title is-5">3. Configure IP Addresses</h5>
+      <p>Configure static IP addresses on computers (192.168.0.30, 192.168.0.31) and enable dynamic addressing on laptops.</p>
+
+      <h5 class="title is-5">4. Add Web Servers</h5>
+      <p>Add two web servers:</p>
+      <ul>
+        <li><i class="fas fa-server"></i> 192.168.0.10 named "cisco.com"</li>
+        <li><i class="fas fa-server"></i> 192.168.0.20 named "cpt.net"</li>
+      </ul>
+
+      <h5 class="title is-5">5. Update Web Server Content</h5>
+      <p>Update the content of the "cisco.com" server's index.html:</p>
+      <textarea rows="10" cols="100">
+        <html>
+        <head>
+          <title>Cisco Technologies</title>
+        </head>
+        <body>
+          <center>
+            <img src="cscoptlogo177x111.jpg" width="177" height="111">
+            <br>
+            <font size="+2" color="blue"><b>Cisco Technologies</b></font>
+          </center>
+          <hr>
+          <p>Cisco is a global leader in networking technologies and solutions for ICT, providing products and services for
+            routing, switching, wireless communication, cloud computing, and cybersecurity.</p>
+          <ul>
+            <li>Innovations in networking technologies.</li>
+            <li>A wide range of products.</li>
+            <li>Global presence and customer base.</li>
+            <li>Cybersecurity and safety standards.</li>
+            <li>Extensive certification programs.</li>
+            <li>High-quality support and services.</li>
+          </ul>
+        </body>
+        </html>
+      </textarea>
+
+      <p>Update the content of the "cpt.net" server's index.html:</p>
+      <textarea rows="10" cols="100">
+        <html>
+        <body>
+        <h4>Cisco Packet Tracer</h4>
+        <p>Cisco Packet Tracer is network simulation software developed by Cisco Systems. It provides an environment for visualizing, testing, and debugging network scenarios. Used for education in networking, it offers an intuitive interface for creating and testing networks in a virtual environment.</p>
+        <h5>Pros and Cons:</h5>
+        <table>
+          <tr>
+            <td><strong>Pros</strong></td>
+            <td><strong>Cons</strong></td>
+          </tr>
+          <tr>
+            <td>Free software</td>
+            <td>Limited modeling capabilities</td>
+          </tr>
+          <tr>
+            <td>Intuitive interface</td>
+            <td>Does not include all features of real hardware</td>
+          </tr>
+          <tr>
+            <td>Educational tool for networking</td>
+            <td>May not always accurately reflect real network behavior</td>
+          </tr>
+          <tr>
+            <td>Wide range of devices for simulation</td>
+            <td>Not suitable for complex corporate networks</td>
+          </tr>
+          <tr>
+            <td>Ideal for educational purposes</td>
+            <td>Limited support for advanced protocols and settings</td>
+          </tr>
+        </table>
+        <br>
+        <img src="cscoptlogo177x111.jpg" width="59" height="37">
+        </body>
+        </html>
+      </textarea>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
