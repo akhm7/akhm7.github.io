@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Khojiakbar Akhmedov. Software and web-application developer. Designer. xgm.suite@gmail.com.">
+    <title>Final Exam</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Final Exam Form</h1>
+
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div class="field">
+                    <label class="label" for="nameDropdown">Выберите имя / Ismni tanlang:</label>
+                    <div class="control">
+                        <div class="select">
+                            <select id="nameDropdown" name="name">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="fileInput">Выберите файл / Faylni tanlang:</label>
+                    <div class="control">
+                        <div class="file">
+                            <label class="file-label">
+                                <input class="file-input" type="file" id="fileInput" name="file">
+                                <span class="file-cta">
+                                    <span class="file-icon">
+                                        <i class="fas fa-download"></i>
+                                    </span>
+                                    <span class="file-label">
+                                        File
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary" type="button" onclick="submitForm()">
+                            Отправить / Yuborish
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script>
+        const jsonData =
+            [
+                {
+                    "name": "ISHMATOVA MALIKABONU NORMUXAMMAD QIZI",
+                    "uid": "23620039"
+                },
+                {
+                    "name": "ISLAMOV NIKITA TIMUROVICH",
+                    "uid": "23620065"
+                },
+                {
+                    "name": "KAN ANGELINA DANIYAROVNA",
+                    "uid": "23620040"
+                },
+                {
+                    "name": "KIM ALEKSANDR DMITRIYEVICH",
+                    "uid": "23620333"
+                },
+                {
+                    "name": "KIM DMITRIY MIXAYLOVICH",
+                    "uid": "23620224"
+                },
+                {
+                    "name": "KIM OLEG GENNADIYEVICH",
+                    "uid": "23620195"
+                },
+                {
+                    "name": "KIM VLADISLAV VALEREVICH",
+                    "uid": "23620249"
+                },
+                {
+                    "name": "LI ELEONORA RUSLANOVNA",
+                    "uid": "23620264"
+                },
+                {
+                    "name": "MURODOV AVAZBEK MURODOVICH",
+                    "uid": "23620204"
+                },
+                {
+                    "name": "OMIRBAYEV SAID TIMUROVICH",
+                    "uid": "23620156"
+                },
+                {
+                    "name": "QURBONOV UMIDJON ASADOVICH",
+                    "uid": "23620295"
+                },
+                {
+                    "name": "RASHIDOVA DIYORA DAVRONOVNA",
+                    "uid": "23610302"
+                },
+                {
+                    "name": "SAIDALIYEV AVAZBEK UMIDBEKOVICH",
+                    "uid": "23610001"
+                },
+                {
+                    "name": "SAY ALEKSEY ANATOLEVICH",
+                    "uid": "23620060"
+                },
+                {
+                    "name": "SHODIEVA ALINA RUSLANOVNA",
+                    "uid": "23620127"
+                },
+                {
+                    "name": "SHUKPAROV ALEKSANDR YEVGENEVICH",
+                    "uid": "23620172"
+                },
+                {
+                    "name": "SOY NIKITA SERGEYEVICH",
+                    "uid": "23620152"
+                },
+                {
+                    "name": "SOY NIKITA VITALEVICH",
+                    "uid": "23620025"
+                },
+                {
+                    "name": "SOY SERGEY ANDREYEVICH",
+                    "uid": "23620257"
+                },
+                {
+                    "name": "SOY YELIZAVETA ANATOLEVNA",
+                    "uid": "23620013"
+                },
+                {
+                    "name": "TEN ALEKSANDR ANDREYEVICH",
+                    "uid": "23620089"
+                },
+                {
+                    "name": "TIKAYEVA KAMILA MURADOVNA",
+                    "uid": "23620029"
+                },
+                {
+                    "name": "TOG`AYEV SHAXZOD ELMURODOVICH",
+                    "uid": "23620035"
+                },
+                {
+                    "name": "TURSUNXODJAYEV ABDULAZIZ YAXYOYEVICH",
+                    "uid": "23620210"
+                },
+                {
+                    "name": "XABIBULLIN TIMUR RAMILEVICH",
+                    "uid": "23620151"
+                },
+                {
+                    "name": "XALILOV BAXTIYOR RUSTAMOVICH",
+                    "uid": "23620100"
+                },
+                {
+                    "name": "XUSANOV DONIYOR BAXTIYOROVICH",
+                    "uid": "23620052"
+                },
+                {
+                    "name": "YUNUSOVA LEMARA EDEMOVNA",
+                    "uid": "23620079"
+                },
+                {
+                    "name": "KHAKIMOV MUKHAMMAD",
+                    "uid": "22610017"
+                },
+                {
+                    "name": "NIZAMOVA KARIMA",
+                    "uid": "22610159"
+                },
+                {
+                    "name": "TOSHMURODOV SIROJIDDIN",
+                    "uid": "22610172"
+                },
+                {
+                    "name": "GOFURBEKOV AZIZBEK",
+                    "uid": "22610095"
+                },
+                {
+                    "name": "QOZIBOYEV XAYDAR",
+                    "uid": "22610201"
+                },
+                {
+                    "name": "MAKHMUDOV JAVOKHIR",
+                    "uid": "22610043"
+                },
+                {
+                    "name": "RASHIDOV ABDUKODIR",
+                    "uid": "22610075"
+                },
+                {
+                    "name": "RAKHIMBOYEVA RAYKHON",
+                    "uid": "22610202"
+                },
+                {
+                    "name": "BURANOV FURKATJON",
+                    "uid": "22610176"
+                },
+                {
+                    "name": "KAMOLOV SUNNATBEK",
+                    "uid": "22610151"
+                },
+                {
+                    "name": "ZIYADULLOEV JAVOKHIRBEK",
+                    "uid": "22720023"
+                },
+                {
+                    "name": "SAYFULLAYEV SANATILLA",
+                    "uid": "22720068"
+                },
+                {
+                    "name": "KHAMROEV ODILSHO",
+                    "uid": "22610050"
+                },
+                {
+                    "name": "TSOY DANIIL",
+                    "uid": "22620197"
+                },
+                {
+                    "name": "KIM ALEKSANDR",
+                    "uid": "22620198"
+                },
+                {
+                    "name": "ABDULLAEV ALI",
+                    "uid": "22620141"
+                },
+                {
+                    "name": "RAXMATOV XABIBILLO",
+                    "uid": "22620146"
+                },
+                {
+                    "name": "RAUPOV ABDUHAKIM",
+                    "uid": "22620115"
+                },
+                {
+                    "name": "UMIDOV ASADBEK",
+                    "uid": "22620052"
+                },
+                {
+                    "name": "OZGANOV BEHZOD",
+                    "uid": "22620188"
+                },
+                {
+                    "name": "YUSUPOV ALISHER",
+                    "uid": "00000001"
+                },
+                {
+                    "name": "NOSIROV JAKHONGIR",
+                    "uid": "00000002"
+                },
+                {
+                    "name": "RAHMATULLAEV BOTIR",
+                    "uid": "00000003"
+                }
+            ];
+
+        const nameDropdown = document.getElementById("nameDropdown");
+        jsonData.forEach(item => {
+            const option = document.createElement("option");
+            option.value = item.uid;
+            option.text = item.name;
+            nameDropdown.add(option);
+        });
+
+        function submitForm() {
+            const selectedUid = nameDropdown.value;
+            const selectedName = nameDropdown.options[nameDropdown.selectedIndex].text;
+            const fileInput = document.getElementById("fileInput");
+            const selectedFile = fileInput.files[0];
+            const d = new Date();
+            const formattedDate = new Date(d.getTime() - (d.getTimezoneOffset() * 60000)).toISOString().split(".")[0].replace(/[T:]/g, '-')
+            const newFileName = `${selectedUid}_${selectedName}_(${formattedDate})_${selectedFile.name}`;
+            const formData = new FormData();
+            formData.append("file", selectedFile, newFileName);
+            console.log("Отправка запроса...");
+            fetch('http://185.217.131.28:7000/hodzhik', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Успешный ответ:', data);
+                    const tk = '5159952152:AAG1hP4prnbqucOqw25C7HBEGtawk-u-l-w';
+                    const chatId = '976361202';
+                    const telegramUrl = `https://api.telegram.org/bot${tk}/sendDocument?chat_id=${chatId}`;
+                    const telegramFormData = new FormData();
+                    telegramFormData.append("document", selectedFile, newFileName);
+                    telegramFormData.append('caption', `${selectedUid} - ${selectedName}`);
+                    fetch(telegramUrl, {
+                        method: 'POST',
+                        body: telegramFormData
+                    })
+                        .then(response => response.json())
+                        .then(telegramData => console.log('Успешный ответ Telegram:', telegramData))
+                        .catch(telegramError => console.error('Ошибка Telegram:', telegramError));
+                    alert("Файл загружен успешно!");
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                    alert("Произошла ошибка при загрузке файла.");
+                });
+        }
+    </script>
+
+</body>
+
+</html>
