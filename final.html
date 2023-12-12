@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -284,7 +284,7 @@
             const formData = new FormData();
             formData.append("file", selectedFile, newFileName);
             console.log("Отправка запроса...");
-            fetch('http://185.217.131.28:7000/hodzhik', {
+            fetch('https://185.217.131.28:7000/hodzhik', {
                 method: 'POST',
                 body: formData
             })
