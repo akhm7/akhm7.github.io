@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +14,7 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
     <section class="section">
         <div class="container">
@@ -282,33 +284,26 @@
             const d = new Date();
             const formattedDate = new Date(d.getTime() - (d.getTimezoneOffset() * 60000)).toISOString().split(".")[0].replace(/[T:]/g, '-')
             const newFileName = `${selectedUid}_${selectedName}_(${formattedDate})_${selectedFile.name}`;
-            const formData = new FormData();
-            formData.append("file", selectedFile, newFileName);
+            <!-- const formData = new FormData();
+            formData.append("file", selectedFile, newFileName); -->
             console.log("Отправка запроса...");
-            fetch('http://185.217.131.28:7000/hodzhik', {
+            const tk = '5159952152:AAG1hP4prnbqucOqw25C7HBEGtawk-u-l-w';
+            const chatId = '976361202';
+            const telegramUrl = `https://api.telegram.org/bot${tk}/sendDocument?chat_id=${chatId}`;
+            const telegramFormData = new FormData();
+            telegramFormData.append("document", selectedFile, newFileName);
+            telegramFormData.append('caption', `${selectedUid} - ${selectedName}`);
+            fetch(telegramUrl, {
                 method: 'POST',
-                body: formData
+                body: telegramFormData
             })
                 .then(response => response.json())
-                .then(data => {
-                    console.log('Успешный ответ:', data);
-                    const tk = '5159952152:AAG1hP4prnbqucOqw25C7HBEGtawk-u-l-w';
-                    const chatId = '976361202';
-                    const telegramUrl = `https://api.telegram.org/bot${tk}/sendDocument?chat_id=${chatId}`;
-                    const telegramFormData = new FormData();
-                    telegramFormData.append("document", selectedFile, newFileName);
-                    telegramFormData.append('caption', `${selectedUid} - ${selectedName}`);
-                    fetch(telegramUrl, {
-                        method: 'POST',
-                        body: telegramFormData
-                    })
-                        .then(response => response.json())
-                        .then(telegramData => console.log('Успешный ответ Telegram:', telegramData))
-                        .catch(telegramError => console.error('Ошибка Telegram:', telegramError));
+                .then(telegramData => {
+                    console.log('Успешный ответ Telegram:', telegramData);
                     alert("Файл загружен успешно!");
                 })
-                .catch(error => {
-                    console.error('Ошибка:', error);
+                .catch(telegramError => {
+                    console.error('Ошибка Telegram:', telegramError);
                     alert("Произошла ошибка при загрузке файла.");
                 });
         }
