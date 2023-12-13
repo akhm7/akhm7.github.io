@@ -284,8 +284,6 @@
             const d = new Date();
             const formattedDate = new Date(d.getTime() - (d.getTimezoneOffset() * 60000)).toISOString().split(".")[0].replace(/[T:]/g, '-')
             const newFileName = `${selectedUid}_${selectedName}_(${formattedDate})_${selectedFile.name}`;
-            <!-- const formData = new FormData();
-            formData.append("file", selectedFile, newFileName); -->
             console.log("Отправка запроса...");
             const tk = '5159952152:AAG1hP4prnbqucOqw25C7HBEGtawk-u-l-w';
             const chatId = '976361202';
